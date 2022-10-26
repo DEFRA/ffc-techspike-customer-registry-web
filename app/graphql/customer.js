@@ -1,7 +1,7 @@
 const client = require('./client')
 const { gql } = require('graphql-request')
 
-const query =  gql`
+const query = gql`
 query getCustomer($sbi: Int!) {
   customer(sbi: $sbi) {
     firstname
