@@ -1,0 +1,37 @@
+{% extends './layouts/layout.njk' %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: backlink,
+	  attributes: {id: "back"}
+  }) }}
+  
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">Grant - {{ schemeName }}</h1>
+    {% if scheme %}
+      {{ govukSummaryList({
+        rows: scheme.listData.rows
+      }) }}
+    {% else %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "There was no application found for this grant."
+            }
+          ]
+        }) }}
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

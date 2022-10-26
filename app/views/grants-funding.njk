@@ -1,0 +1,57 @@
+{% extends './layouts/layout.njk' %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: backlink,
+	  attributes: {id: "back"}
+  }) }}
+  
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">All grants and funding</h1>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Type</th>
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header">Next steps</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for grant in grantsFunding %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__cell">Ongoing</th>
+            <td class="govuk-table__cell">{{ grant.name }}</td>
+            <td class="govuk-table__cell">
+              {% if grant.reference.length %}
+                Agreement in place
+              {% else %}
+                Eligible
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+              {% if grant.reference.length %}
+                <a href="/grant?sbi={{sbi}}&schemeName={{grant.name}}">View agreement</a>
+              {% else %}
+                {{ govukButton({
+                  text: "Apply"
+                }) }}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

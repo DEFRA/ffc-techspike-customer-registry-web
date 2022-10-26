@@ -18,7 +18,6 @@ module.exports = [{
         sbi: Joi.string().required()
       }),
       failAction: async (request, h, error) => {
-        console.log('error', error)
         return h.view('index', { error }).code(400).takeover()
       }
     },

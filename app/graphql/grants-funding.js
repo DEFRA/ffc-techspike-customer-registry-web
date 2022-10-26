@@ -4,20 +4,18 @@ const { gql } = require('graphql-request')
 const query = gql`
 query getCustomer($sbi: Int!) {
   customer(sbi: $sbi) {
-    sbi
-    firstname
-    lastname
-    address
-    email
-    phone
+    schemes {
+      name
+      reference
+    }
   }
 }
 `
 
-const getCustomer = async (sbi) => {
+const getGrantsFunding = async (sbi) => {
   const response = await client.request(query, { sbi })
-  const customer = response?.customer
-  return customer
+  const grantsFunding = response?.customer
+  return grantsFunding?.schemes
 }
 
-module.exports = getCustomer
+module.exports = getGrantsFunding

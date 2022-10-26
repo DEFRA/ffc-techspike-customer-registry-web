@@ -2,6 +2,10 @@ const routes = [].concat(
   require('../routes/assets'),
   require('../routes/cookies'),
   require('../routes/dashboard'),
+  require('../routes/grants-funding'),
+  require('../routes/history'),
+  require('../routes/grant'),
+  require('../routes/payment'),
   require('../routes/healthy'),
   require('../routes/healthz'),
   require('../routes/index')

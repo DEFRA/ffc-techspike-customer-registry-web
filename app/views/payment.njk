@@ -1,0 +1,43 @@
+{% extends './layouts/layout.njk' %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: backlink,
+	  attributes: {id: "back"}
+  }) }}
+  
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">Payments</h1>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Grant</th>
+          <th scope="col" class="govuk-table__header">Application Reference</th>
+          <th scope="col" class="govuk-table__header">Value</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header">Created At</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__cell">{{ payment.sourceSystem }}</th>
+          <td class="govuk-table__cell">{{ payment.applicationReference }}</td>
+          <td class="govuk-table__cell">£{{ payment.value }}</td>
+          <td class="govuk-table__cell">{{ payment.status }}</td>
+          <td class="govuk-table__cell">{{ payment.createdAt }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

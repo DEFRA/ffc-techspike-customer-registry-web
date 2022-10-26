@@ -1,10 +1,10 @@
 const Joi = require('joi')
-const getCustomer = require('./models/customer')
+const getGrantsFunding = require('../graphql/grants-funding')
 const sbiSchema = require('./schemas/sbi')
 
 module.exports = {
   method: 'GET',
-  path: '/dashboard',
+  path: '/grants-funding',
   options: {
     validate: {
       query: Joi.object()
@@ -15,8 +15,8 @@ module.exports = {
     },
     handler: async (_, h) => {
       const sbi = h.request.query.sbi
-      const customer = await getCustomer(sbi)
-      return h.view('dashboard', customer)
+      const grantsFunding = await getGrantsFunding(sbi)
+      return h.view('grants-funding', { sbi, grantsFunding, backlink: `/dashboard?sbi=${sbi}` })
     }
   }
 }

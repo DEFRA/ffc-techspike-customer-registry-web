@@ -19,6 +19,7 @@ dist/
 
 # Generated views
 layout.njk
+map.njk
 
 # OS stuff
 .DS_Store

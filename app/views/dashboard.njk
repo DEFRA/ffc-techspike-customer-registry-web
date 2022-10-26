@@ -14,6 +14,28 @@
 
 {% block content %}
 <div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <h1 class="govuk-heading-s">Menu</h1>
+    <ul class="govuk-list">
+      <!--<li>Land
+        <ul class="govuk-list">
+          <li><a class="govuk-link" href="#"> - Your land</a></li>
+        </ul>
+      </li>-->
+      <li>Grants and payments
+        <ul class="govuk-list">
+          <li><a class="govuk-link" href="#"> - <a class="govuk-link" href="grants-funding?sbi={{sbi}}">Your agreements</a></li>
+          <li><a class="govuk-link" href="#"> - <a class="govuk-link" href="payment?sbi={{sbi}}">Your payments</a></li>
+        </ul>
+      </li>
+      <li>
+        History
+        <ul class="govuk-list">
+          <li><a class="govuk-link" href="#"> - <a class="govuk-link" href="history?sbi={{sbi}}">Your history</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Your details</h1>
     {{ govukSummaryList({

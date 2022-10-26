@@ -9,6 +9,7 @@ services:
       APPINSIGHTS_CLOUDROLE: ffc-techspike-customer-registry-web-local
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
       COOKIE_PASSWORD: who-likes-cookies-i-like-cookies-everybody-likes-cookies
+      OS_MAP_API_KEY: ${OS_MAP_API_KEY}
       REDIS_HOSTNAME: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: ""

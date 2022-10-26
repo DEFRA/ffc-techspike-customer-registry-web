@@ -1,0 +1,43 @@
+{% extends './layouts/layout.njk' %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: backlink,
+	  attributes: {id: "back"}
+  }) }}
+  
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">History</h1>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Event Type</th>
+          <th scope="col" class="govuk-table__header">Event Raised</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header">Payload</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for event in history %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__cell">{{ event.EventType }}</th>
+            <td class="govuk-table__cell">{{ event.EventRaised }}</td>
+            <td class="govuk-table__cell">{{ event.Status }}</td>
+            <td class="govuk-table__cell">{{ event.Payload }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
