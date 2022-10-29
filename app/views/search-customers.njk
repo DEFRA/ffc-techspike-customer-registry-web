@@ -64,21 +64,21 @@
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Sbi</th>
-          <th scope="col" class="govuk-table__header">First Name</th>
-          <th scope="col" class="govuk-table__header">Last Name</th>
+          <th scope="col" class="govuk-table__header">Name</th>
           <th scope="col" class="govuk-table__header">Email</th>
           <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Address</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+          <th scope="col" class="govuk-table__header">Schemes</th>
+          <th scope="col" class="govuk-table__header"></th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
         {% for customer in customers %}
           <tr class="govuk-table__row">
             <th class="govuk-table__cell">{{ customer.sbi }}</th>
-            <td class="govuk-table__cell">{{ customer.firstname }}</td>
-            <td class="govuk-table__cell">{{ customer.lastname }}</td>
+            <td class="govuk-table__cell">{{ customer.name }}</td>
             <td class="govuk-table__cell">{{ customer.email }}</td>
             <td class="govuk-table__cell">{{ customer.address }}</td>
+            <td class="govuk-table__cell">{{ customer.schemes }}</td>
             <td class="govuk-table__cell"><a href="/dashboard?sbi={{ customer.sbi }}">View</a></td>
           </tr>
         {% endfor %}
