@@ -3,6 +3,7 @@ const routes = [].concat(
   require('../routes/cookies'),
   require('../routes/dashboard'),
   require('../routes/grants-funding'),
+  require('../routes/search-customers'),
   require('../routes/history'),
   require('../routes/grant'),
   require('../routes/payment'),

@@ -1,0 +1,89 @@
+{% extends './layouts/layout.njk' %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/",
+	  attributes: {id: "back"}
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <h1 class="govuk-heading-l">Search Customers</h1>
+  <div class="govuk-grid-column-one-full">
+    <form method="POST" action="/search-customers" novalidate>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+          <p>
+            {{ govukInput({
+              id: "searchString",
+              name: "searchString",
+              label: {
+                text: "Search"
+              },
+              value: searchString
+            }) }}
+          </p>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <p>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="sort">
+                Search field
+              </label>
+              <select class="govuk-select" id="searchField" name="searchField">
+                <option value="all" {% if 'all' in searchField %} selected {% endif %}>All</option>
+                <option value="sbi" {% if 'sbi' in searchField %} selected {% endif %}>Sbi</option>
+                <option value="firstname" {% if 'firstname' in searchField %} selected {% endif %}>First name</option>
+                <option value="lastname" {% if 'lastname' in searchField %} selected {% endif %}>Last name</option>
+                <option value="address" {% if 'address' in searchField %} selected {% endif %}>Address</option>
+                <option value="email" {% if 'email' in searchField %} selected {% endif %}>Email</option>
+              </select>
+            </div>
+          </p>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <p>
+            <div style="margin-top: 48px;">
+              {{ govukButton({
+                text: "Search"
+              }) }}
+            </div>
+          </p>
+        </div>
+      </div>
+    </form>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Sbi</th>
+          <th scope="col" class="govuk-table__header">First Name</th>
+          <th scope="col" class="govuk-table__header">Last Name</th>
+          <th scope="col" class="govuk-table__header">Email</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Address</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for customer in customers %}
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">{{ customer.sbi }}</th>
+            <td class="govuk-table__cell">{{ customer.firstname }}</td>
+            <td class="govuk-table__cell">{{ customer.lastname }}</td>
+            <td class="govuk-table__cell">{{ customer.email }}</td>
+            <td class="govuk-table__cell">{{ customer.address }}</td>
+            <td class="govuk-table__cell"><a href="/dashboard?sbi={{ customer.sbi }}">View</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
