@@ -1,5 +1,4 @@
 const Joi = require('joi')
-const schemeNameSchema = require('./schemas/scheme-name')
 const getPayments = require('../graphql/payment')
 const parsePayment = require('./models/payment')
 

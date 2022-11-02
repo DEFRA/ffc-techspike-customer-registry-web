@@ -3,6 +3,8 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
+{% from "macros/address.njk" import address %}
+
 {% block pageTitle %}{{ serviceName }}{% endblock %}
 
 {% block beforeContent %}
@@ -16,7 +18,7 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">History</h1>
     <table class="govuk-table">
       <thead class="govuk-table__head">
@@ -24,7 +26,7 @@
           <th scope="col" class="govuk-table__header">Event Type</th>
           <th scope="col" class="govuk-table__header">Event Raised</th>
           <th scope="col" class="govuk-table__header">Status</th>
-          <th scope="col" class="govuk-table__header">Payload</th>
+          <th scope="col" class="govuk-table__header"></th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -33,11 +35,21 @@
             <th scope="row" class="govuk-table__cell">{{ event.EventType }}</th>
             <td class="govuk-table__cell">{{ event.EventRaised }}</td>
             <td class="govuk-table__cell">{{ event.Status }}</td>
-            <td class="govuk-table__cell">{{ event.Payload }}</td>
+            <td class="govuk-table__cell">
+              {% if event.EventType !== "create customer" %}
+                <a href="/history?sbi={{sbi}}&rowKey={{event.rowKey}}">View</a>
+              {% endif %}
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    {% if historyData.type.length %}
+    <h1 class="govuk-heading-l"> Event data</h1>
+    {{ address(historyData.data) }}
+    {% endif %}
   </div>
 </div>
 {% endblock %}

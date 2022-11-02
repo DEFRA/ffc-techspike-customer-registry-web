@@ -9,6 +9,8 @@ query getCustomer($sbi: Int!) {
       EventType
       Status
       Payload
+      partitionKey
+      rowKey
     }
   }
 }
@@ -21,4 +23,3 @@ const getHistory = async (sbi) => {
 }
 
 module.exports = getHistory
-
