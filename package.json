@@ -35,7 +35,7 @@
     "@hapi/yar": "^10.1.1",
     "@urql/core": "^3.0.4",
     "applicationinsights": "^2.1.6",
-    "govuk-frontend": "4.0.1",
+    "govuk-frontend": "4.7.0",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
     "hapi-pino": "^9.1.2",
